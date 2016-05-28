@@ -1,0 +1,23 @@
+body {
+  background-color: #31373B; color: #fff;
+  font-size: 15px; line-height: 1.4;
+  -webkit-font-smoothing: subpixel-antialiased;
+  padding: 0; margin:0;
+}
+
+pre { 
+  position: fixed; width: 100%;
+  top: 0px; bottom: 0px; left: 0%;
+  margin:0px;
+  transition: left 500ms;
+  background-color: #31373B; color: #E3EEF5;
+  padding: 24px 12px;
+  box-sizing: border-box;
+  overflow:scroll;
+}
+pre em:not(.comment) { font-style: normal; }
+.comment       { color: #707e84; }
+.selector      { color: #c66c75; }
+.selector .key { color: #c66c75; }
+.key           { color: #ffffff; }
+.value         { color: #d5927b; }

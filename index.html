@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+<script type="text/javascript">
+var openComment, styles, time, writeStyleChar, writeStyles;
+
+styles = "/* CURRICULUM VITAE */\n\n.Name { Joshua Lake }\n\n.Address { \n          110 Hillcrest Avenue\n          Kibworth\n          Leicester\n          LE8 0NJ \n         }\n\n.Telephone { \n            0116 279 2127\n            07979142849\n           }\n \n.Email { joshua.charles.lake@gmail.com }\n \n.Date of Birth { 14 July 1992 }\n\n/* PERSONAL PROFILE */\n\nI am honest, reliable and punctual and have always taken great pride in my work \nand my aim is to work for a company that will challenge me in order to achieve \nmy full potential.\n \nI communicate well, and am an enthusiastic team member, working well under pressure. \nI am eager to find a career where I can be fulfilled and learn new skills. I am committed\nto becoming a loyal and trusted member of an organisation which can help me achieve my goals.  \n\n/* SECONDARY EDUCATION */\n\n.Kibworth High School { September 2003 - July 2006 }\n.The Robert Smyth School { September 2006 - July 2008 }\n\n/* QUALIFICATIONS */ \n\nGCSE - ICT                          Distinction\nGCSE - Mathematics                            A\nGCSE - Science                                A\nGCSE - Additional Science                     A*\nGCSE - English                                B\nGCSE - Media Studies                          B\nGCSE - Product Design                         B\nGCSE - English Literature                     C\nGCSE - French                                 C\nGCSE - Business Studies                       C\nGCSE - Religious Studies                      C\n\n/* HIGHER EDUCATION */   \n\n.Leicester College {  September 2009 - July 2011 }\n.De Montfort University { September 2011 - July 2013 }\n\n/* QUALIFICATIONS */ \n\n- BTEC National Diploma in Graphic Design\n- NVQ Level 2 in Customer Service\n- Foundation Degree in Graphic Design & Interactive E-Media\n\n/* EMPLOYMENT HISTORY */ \n\n.Creare Ltd { October 2011 - Present }\nBoughton Leigh House\nBrownsover Road\nRugby\nWarwickshire\nCV21 1HL\n\n.Job Role { Web Designer & Developer }\nOctober 2011 - October 2014\n      \nProviding Front-End design & development of seo friendly, responsive CMS websites that meet \nclients specifications and exceeds their expectations. Working with various programing \nlanguages including HTML, CSS, PHP, Javascript & jQuery, Git and management of databases \nthrough mySQL.\n\n.Job Role { Technical SEO Developer }\nOctober 2014 - Present\n\nProviding strategies for implementing SEO to optimise website for search. Completing SEO \naudits & full crawl analysis to help websites gain exposure & visibility. Working with \nwebmaster tools & google analytics to find opportunities for growth and to provide reporting \nto clients. Responsible for making design & development changes of our clients websites to \nhelp assist with the with marketing campaign. Providing technical support & training to other \nteams members within the department and organization. \n\n/* SKILLS */          \n\n- Good design skills using Adobe Photoshop & Adobe Illustrator.\n- Client Facing with good communication skills.\n- Ability to teach myself and learn new skills.\n- High attention to detail.\n- Troubleshooting & problem solving.\n- Able to work on my own and as part of a team.\n- Leadership & management experience.\n \n/* INTERESTS */                            \n\n- The Internet\n- Computing & Technology\n- Digital Marketing\n- Keeping up to date with latest design, development & SEO trends.\n- Cycling\n- Motocross\n- Socialising\n- Music\n\n/* REFERENCES */\n\nAvailable on request                                                                                                    \n                                            ";
+
+openComment = false;
+
+writeStyleChar = function(which) {
+  if (which === '/' && openComment === false) {
+    openComment = true;
+    styles = $('#style-text').html() + which;
+  } else if (which === '/' && openComment === true) {
+    openComment = false;
+    styles = $('#style-text').html().replace(/(\/[^\/]*\*)$/, '<em class="comment">$1/</em>');
+  } else if (which === ':') {
+    styles = $('#style-text').html().replace(/([a-zA-Z- ^\n]*)$/, '<em class="key">$1</em>:');
+  } else if (which === ';') {
+    styles = $('#style-text').html().replace(/([^:]*)$/, '<em class="value">$1</em>;');
+  } else if (which === '{') {
+    styles = $('#style-text').html().replace(/(.*)$/, '<em class="selector">$1</em>{');
+  } else {
+    styles = $('#style-text').html() + which;
+  }
+  $('#style-text').html(styles);
+  return $('#style-tag').append(which);
+};
+
+writeStyles = function(message, index, interval) {
+  var pre;
+  if (index < message.length) {
+    pre = document.getElementById('style-text');
+    pre.scrollTop = pre.scrollHeight;
+    writeStyleChar(message[index++]);
+    return setTimeout((function() {
+      return writeStyles(message, index, interval);
+    }), interval);
+  }
+};
+
+$('body').append("<style id=\"style-tag\"></style>\n<pre id=\"style-text\"></pre>    ");
+
+time = window.innerWidth <= 578 ? 4 : 16;
+
+writeStyles(styles, 0, time);
+
+// ---
+// generated by coffee-script 1.9.2
+</script>
+<!-- START BODY -->
+</div>
+</body>
+</html>
